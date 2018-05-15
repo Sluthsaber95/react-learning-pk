@@ -1,18 +1,22 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom/cjs/react-dom.development';
-import ReactDOMServer from 'react-dom/server';
 import context from 'jest-plugin-context';
-import {
-  configure,
-  render,
-  shallow,
-  mount
+import { mount, unmount } from 'enzyme'; // 348 K
+import '../enzyme-setup'
+
+import { 
+  Stateless, 
+  StatelessNotReturnNull,
+  StatelessReturnDiv
 }
-from 'enzyme'; // 348 K
-import Adapter from 'enzyme-adapter-react-16'
-configure({
-  adapter: new Adapter()
-});
+from '../utils/mockStateless';
+import { ContainerEmpty } from '../utils/mockContainers';
+import {
+  ModalBackdrop,
+  ModalContent,
+  ModalDialog,
+  ModalWrap,
+} from './ReadOnly/components';
 
 /*
 TODO: Use enzyme to render the components, for more accurate tests
@@ -21,26 +25,16 @@ describe('Testing out the ReactDOM Global', () => {
   context('ReactDOM.render()', () => {
     it('renders ReactDOM.render(whitelistedValues, div) on values returned', () => {
       const div = document.createElement('div');
-      const StatelessComponent = () => {
-        const whiteListValues = [<div></div>, "", NaN, 0, null];
-        const index = Math.floor(Math.random()*4)
-        return null;
-      }
-      expect(ReactDOM.render( <StatelessComponent />, div)).toEqual(null);
+      expect(ReactDOM.render( <Stateless />, div)).toEqual(null);
     });
     it('renders ReactDOM.render(nonWhitelistedValues, div) on values returned', () => {
       const div = document.createElement('div');
-      const StatelessComponentNotReturnNull = () => {
-        const nonWhiteListValues = [{}, undefined, 0];
-        const index = Math.floor(Math.random()*whiteListValues.length)
-        return nonWhiteListValues;
-      }
       try {
       } catch(err){ 
         try {
-          expect(ReactDOM.render( <StatelessComponentNotReturnNull /> , div)).toEqual(null);
+          expect(ReactDOM.render( <StatelessNotReturnNull /> , div)).toEqual(null);
         } catch(err){
-          console.error("Jest: `it` and `test` must return either a Promise or undefined.")
+          // console.error("Jest: `it` and `test` must return either a Promise or undefined.")
           return false;
         }
       }
@@ -49,26 +43,16 @@ describe('Testing out the ReactDOM Global', () => {
   context('ReactDOM.hydrate', () => {
     it('renders ReactDOM.hydrate(whitelistedValues, div) on values returned', () => {
       const div = document.createElement('div');
-      const StatelessComponent = () => {
-        const whiteListValues = [<div></div>, "", NaN, 0, null];
-        const index = Math.floor(Math.random()*4)
-        return null;
-      }
-      expect(ReactDOM.hydrate( <StatelessComponent /> , div)).toEqual(ReactDOM.render( <StatelessComponent /> , div));
+      expect(ReactDOM.hydrate( <Stateless /> , div)).toEqual(ReactDOM.render( <Stateless /> , div));
     });
     it('renders ReactDOM.hydrate(nonWhiteListedValues, div) on values returned', () => {
       const div = document.createElement('div');
-      const StatelessComponentNotReturnNull = () => {
-        const nonWhiteListValues = [{}, undefined, 0];
-        const index = Math.floor(Math.random() * whiteListValues.length)
-        return nonWhiteListValues;
-      }
       try {
       } catch(err){ 
         try {
-          expect(ReactDOM.hydrate( <StatelessComponentNotReturnNull /> , div)).toEqual(null);
+          expect(ReactDOM.hydrate( <StatelessNotReturnNull /> , div)).toEqual(null);
         } catch(err){
-          console.error("Jest: `it` and `test` must return either a Promise or undefined.")
+          // console.error("Jest: `it` and `test` must return either a Promise or undefined.")
           return false;
         }
       }
@@ -83,28 +67,16 @@ describe('Testing out the ReactDOM Global', () => {
         // console.error('Invariant Violation: unmountComponentAtNode(...): Target container is not a DOM element.')
       }
     });
-    it('testing ReactDOM.unmountComponentAtNode(<StatelessComponent />) on values returned', () => {
+    it('testing ReactDOM.unmountComponentAtNode(<Stateless />) on values returned', () => {
       const div = document.createElement('div');
       expect(ReactDOM.unmountComponentAtNode(div)).toEqual(false)
-
-      const StatelessComponent = () => {
-        return<div><h1>Hello</h1></div>
-      }
-      expect(ReactDOM.render(<StatelessComponent />, div))
+      expect(ReactDOM.render(<Stateless />, div))
       expect(ReactDOM.unmountComponentAtNode(div)).toEqual(true)
       expect(ReactDOM.unmountComponentAtNode(div)).toEqual(false)
     });
-    it('testing ReactDOM.unmountComponentAtNode(<ContainerComponent />) on values returned', () => {
-      const div = document.createElement('div');      
-      class ContainerComponent extends Component {
-        constructor(props){
-          super(props);
-        }
-        render() {
-          return (<div></div>);
-        }
-      }
-      expect(ReactDOM.render(<ContainerComponent/>, div))
+    it('testing ReactDOM.unmountComponentAtNode(<ContainerEmpty />) on values returned', () => {
+      const div = document.createElement('div');
+      expect(ReactDOM.render(<ContainerEmpty/>, div))
       expect(ReactDOM.unmountComponentAtNode(div)).toEqual(true)
       expect(ReactDOM.unmountComponentAtNode(div)).toEqual(false)
     });
@@ -119,27 +91,9 @@ describe('Testing out the ReactDOM Global', () => {
     it('testing ReactDOM.findDOMNode(div) on values returned', () => {
       const div = document.createElement('div');
       const div2 = document.createElement('div');
-      const StatelessComponent = () => {
-        const index = Math.floor(Math.random()*2)
-        const elementGiven = [
-          <div></div>, 
-          <div><h1></h1></div>,
-          <div><h1>Hello</h1></div>
-        ];
-        return <div><h1>Hello</h1></div>;
-      }
-      const statelessComponentChosen = new Promise((resolve, reject) => {
-        const componentChosen = <StatelessComponent />
-        if(true){
-          resolve(componentChosen)
-        }
-      })
-      statelessComponentChosen
-      .then((componentChosen) => {
-        expect(ReactDOM.render(componentChosen, div))
-        expect(ReactDOM.render(componentChosen, div2))
-        expect(ReactDOM.findDOMNode(div)).toEqual(div2)
-      })
+      expect(ReactDOM.render(<StatelessReturnDiv />, div))
+      expect(ReactDOM.render(<StatelessReturnDiv />, div2))
+      expect(ReactDOM.findDOMNode(div)).toEqual(div2)
     });
     it('testing ReactDOM.findDOMNode(<div></div>) on values returned', () => {
       try {
@@ -148,14 +102,11 @@ describe('Testing out the ReactDOM Global', () => {
         // console.error("Invariant Violation: Argument appears to not be a ReactComponent. Keys: $$typeof,type,key,ref,props,_owner,_store")        
       }
     });
-    it('testing ReactDOM.findDOMNode(<StatelessComponent />) on values returned', () => {
-      const div = document.createElement('div');
-      const StatelessComponent = () => {
-        return<div><h1>Hello</h1></div>
-      }
-      expect(ReactDOM.render(<StatelessComponent />, div)).toEqual(null)
+    it('testing ReactDOM.findDOMNode(<Stateless />) on values returned', () => {
+      const div = document.createElement('div');      
+      expect(ReactDOM.render(<Stateless />, div)).toEqual(null)
       try {
-        expect(ReactDOM.findDOMNode(<StatelessComponent />))
+        expect(ReactDOM.findDOMNode(<Stateless />))
       } catch(err){
         // console.error("Invariant Violation: Argument appears to not be a ReactComponent. Keys: $$typeof,type,key,ref,props,_owner,_store")
       }
@@ -169,8 +120,38 @@ describe('Testing out the ReactDOM Global', () => {
         // console.error("Invariant Violation: Target container is not a DOM element")
       }
     })
-    it('ReactDOM.createPortal(child, container)', () => {
-      
-    })
+    it('testing ReactDOM.createPortal(children, container) should render all components and the children', () => {
+      const Child = () => <div>Yolo</div>;
+      class Modal extends React.Component {
+        constructor(props) {
+          super(props);
+          this.el = document.createElement('div');
+          this.modalRoot = document.getElementById('modal-root');
+        }
+        render() {
+          const ModalMarkup = (
+            <div>
+              <ModalBackdrop/>
+              <ModalWrap>
+                <ModalDialog>
+                  <ModalContent>{this.props.children}</ModalContent>
+                </ModalDialog>
+              </ModalWrap>
+            </div>
+          );
+          return ReactDOM.createPortal(ModalMarkup, this.el);
+        }
+      }
+      let component = mount(
+        <Modal>
+          <Child />
+        </Modal>
+      );
+      expect(component.find(ModalBackdrop).exists()).toBeTruthy();
+      expect(component.find(ModalWrap).exists()).toBeTruthy();
+      expect(component.find(ModalWrap).contains(ModalDialog)).toBeTruthy();
+      expect(component.find(ModalDialog).contains(ModalContent)).toBeTruthy();
+      expect(component.find(ModalContent).contains(Child)).toBeTruthy();
+    });      
   })
 })

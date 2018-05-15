@@ -21,6 +21,16 @@
   - React expects that the rendered content is identical between the server and the client
   - Mismatches are rare, and so validating all markup would be prohibitively expensive
 
+- ReactDOM.createPortal()
+  - With a portal, we can render content into a different part of the DOM, as if it were any other React child. This is being rendered inside the #modal-container div
+
+
 ### Content that is unavoidably different
 Between Server and Client
 Components that render something different on the client can read a state variable like this.state.isClient, which you can set to true in componentDidMount()
+
+## Miscellaneous
+### Imports specific locations
+
+import ReactDOM from 'react-dom/cjs/react-dom.development';
+import ReactDOMServer from 'react-dom/server';
