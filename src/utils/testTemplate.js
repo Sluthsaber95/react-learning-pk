@@ -5,10 +5,8 @@ import { shallow, mount, unmount } from 'enzyme'; // 348 K
 import 'console.table'
 import '../enzyme-setup'
 
-import { } from '../utils/mockStateless';
-import { } from '../utils/mockContainers';
-import { } from './ReadOnly/components';
-
+import { } from '../../utils/mockStateless';
+import { } from '../../utils/mockContainers';
 
 describe('Testing out the <Directory Class_Name>', () => {
   context('<Class_Name>', () => {
