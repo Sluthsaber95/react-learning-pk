@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/cjs/react-dom.development';
 import context from 'jest-plugin-context';
 import { shallow, mount, unmount } from 'enzyme'; // 348 K
 import 'console.table'
-import '../enzyme-setup'
+import '../../enzyme-setup'
 
 import { } from '../../utils/mockStateless';
 import { } from '../../utils/mockContainers';
