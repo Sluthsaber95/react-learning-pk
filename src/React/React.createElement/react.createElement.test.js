@@ -1,12 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom/cjs/react-dom.development';
 import { shallow, mount, unmount } from 'enzyme'; // 348 K
 import 'console.table'
 import '../../enzyme-setup'
-
-import { } from '../../utils/mockStateless';
-import { } from '../../utils/mockContainers';
-
 
 describe('Testing out React.createElement', () => {
   it('testing React.createElement() on values returned', () => {
@@ -18,11 +13,6 @@ describe('Testing out React.createElement', () => {
     }
   });
   it('testing React.createElement(type, [props], [..children]) on values returned', () => {
-    // const type = 'fragment';
-    // const props = null;
-    // const children = `Hello ${this.props.toWhat}`
-    // React.createElement(type, [...props], [...children])
-
     /* 
     Not Neccessary if one is not using JSX
     Suggestions: Do at least 5 sets of examples - to cover all the learning bases
