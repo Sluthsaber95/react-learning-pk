@@ -8,8 +8,7 @@ OPTIMISATION:
 ------------------------
 - Test messaging service to catch out errors, possibly rather than displaying them with console.log
 - Give each test a unique ID, a hash that changes, when the tests are altered. To make them more searchable
-
-This subtle differences between Component and PureComponent are used as exemplars as so.
+- Find a way to test out implementation on shouldComponentUpdate() on PureComponent
 */
 import React, { Component } from 'react'
 import context from 'jest-plugin-context'
@@ -42,7 +41,6 @@ describe('Testing out React.Component Abstract Class', () => {
       expect(messageWrapper.find('div').children()).toHaveLength(1)
       expect(messageWrapper.find(Greeting)).toHaveLength(1)
     })
-
     it('test the <Greeting /> can accept props.name', () => {
       const _greetingWrapper = shallow(<Greeting name="Anthony" />)
       expect(_greetingWrapper.instance().props.name).toBe("Anthony")
@@ -57,7 +55,6 @@ describe('Testing out React.Component Abstract Class', () => {
   context('React.PureComponent Minimum Requirements', () => {
     const pureMessageWrapper = mount(<PureMessage />)
     const pureGreetingWrapper = mount(<PureGreeting />)
-
     it('test the current nodes exists', () => {
       expect(pureMessageWrapper.exists()).toBeTruthy()
       expect(pureGreetingWrapper.exists()).toBeTruthy()
