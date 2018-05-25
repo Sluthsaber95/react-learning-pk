@@ -1,22 +1,12 @@
-/*
-Please React.Children are utilies that help deal specifically with this.props.children opaque
-Data structure
-*/
-
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom/cjs/react-dom.development';
 import context from 'jest-plugin-context';
-import { shallow, mount, unmount } from 'enzyme'; // 348 K
+import { mount } from 'enzyme/'; // 348 K
 import 'console.table'
 import '../../enzyme-setup'
 
-import {
-  Stateless,
-  StatelessNotReturnNull,
-  StatelessReturnDiv
-} from '../../utils/mockStateless';
+import { Stateless } from '../../utils/mockStateless';
 import { ViewedIndicator } from '../../utils/mockContainers';
-import { notDeepEqual } from 'assert';
 
 describe('Testing out the React.Children', () => {
   context('React.Children', () => {
@@ -41,9 +31,6 @@ describe('Testing out the React.Children', () => {
     });
     it('testing React.Children.count(children) on values returned', () => {
       class ComponentWithChildren extends Component {
-        constructor(props){
-          super(props);
-        }
         render(){
           return (
             <div>
@@ -56,9 +43,6 @@ describe('Testing out the React.Children', () => {
       }
 
       class EmptyComponent extends Component {
-        constructor(props){
-          super(props);
-        }
         render(){
           return <div>{this.props.children}</div>
         }
@@ -97,7 +81,7 @@ describe('Testing out the React.Children', () => {
     it('testing React.Children.forEach() on values returned', () => {
       expect(React.Children.forEach()).toBe(undefined)
     });
-    it('testing React.Children.forEach(children) on values returned', () => {
+    it('testing React.Children.forEach(...args) on values returned', () => {
       expect(React.Children.forEach(undefined)).toBe(undefined)
       expect(React.Children.forEach(null)).toBe(null)
       expect(React.Children.forEach([])).toBe(undefined)
@@ -111,18 +95,15 @@ describe('Testing out the React.Children', () => {
     });
     it('testing React.Children.forEach(children, function[(thisArg)]) on values returned', () => {
       class ComponentWithChildren extends Component {
-        constructor(props){
-          super(props);
-        }
         render(){
-          const children = [
+          const listedElements = [
             <ViewedIndicator />,
             <ViewedIndicator />,
           ]
-          const alteredChildren = React.Children.forEach(children, child => child)
+          const children = React.Children.forEach(listedElements, child => child)
           return (
             <div>
-              { alteredChildren }
+              { children }
             </div>
           )
         }
@@ -156,29 +137,32 @@ describe('Testing out the React.Children', () => {
     })
     it('testing React.Children.map(children, function[(thisArg)]) on values returned', () => {
       class ComponentWithChildren extends Component {
-        constructor(props){
-          super(props);
-        }
         render(){
-          const children = [
+          const listedElements = [
             <ViewedIndicator />,
             <ViewedIndicator />,
           ]
-          const alteredChildren = React.Children.map(children, child => {
+          const children = React.Children.map(listedElements, child => {
             return React.cloneElement(child, {
-              respondentSeen: false
+              respondentSeen: true
             })
           })
           return (
             <div>
-              { alteredChildren }
+              { children }
             </div>
           )
         }
       }
-      const wrapper = mount(<ComponentWithChildren />)
-      expect(React.Children.count(wrapper.children().props().children)).toBe(2)
-      expect(wrapper.children().props().children[0].props.respondentSeen).toBe(false)
+      
+      const wrapperIndicator = mount(<ViewedIndicator />)
+      expect(wrapperIndicator.state().backgroundColor).toBe("Red")
+      wrapperIndicator.setProps({ respondentSeen: true})
+      expect(wrapperIndicator.state().backgroundColor).toBe("Green")
+      
+      const wrapperChildren = mount(<ComponentWithChildren />)
+      expect(React.Children.count(wrapperChildren.children().props().children)).toBe(2)
+      expect(wrapperChildren.children().props().children[0].props.respondentSeen).toBe(true) // "Red" -> "Green"
     });
   });
   context('React.Children.only()', () => {
@@ -190,12 +174,14 @@ describe('Testing out the React.Children', () => {
       }
     })
     it('testing React.Children.only(arg) on values returned', () => {
-      expect(React.Children.only(<div></div>)).not.toBe(<div></div>)
-      
+      expect(React.Children.only(<div></div>)).toBeTruthy() // <div />
+      expect(React.Children.only(<ViewedIndicator />)).toBeTruthy() // <ViewedIndicator />
+      try {
+        expect(React.Children.only([<ViewedIndicator />, <ViewedIndicator />])).toBeTruthy()
+      } catch (err) {
+        // console.error("Invariant Violation: React.Children.only expected to receive a single React element child.")
+      }
       class ComponentWithChildren extends Component {
-        constructor(props){
-          super(props);
-        }
         render(){
           return (
             <div>
@@ -206,9 +192,6 @@ describe('Testing out the React.Children', () => {
         }
       }
       class ComponentWithSingleChild extends Component {
-        constructor(props){
-          super(props);
-        }
         render(){
           return (
             <div>
@@ -233,9 +216,6 @@ describe('Testing out the React.Children', () => {
     });
     it('testing React.Children.toArray(children) on values returned', () => {
        class ComponentWithChildren extends Component {
-        constructor(props){
-          super(props);
-        }
         render () {
           return React.Children.toArray(this.props.children)
             .filter(child => {
