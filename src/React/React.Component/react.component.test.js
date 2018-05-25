@@ -12,7 +12,7 @@ OPTIMISATION:
 */
 import React, { Component } from 'react'
 import context from 'jest-plugin-context'
-import { shallow, mount, unmount } from 'enzyme' // 348 K
+import { shallow, mount } from 'enzyme' // 348 K
 import '../../enzyme-setup'
 import 'console.table'
 import {
@@ -58,7 +58,7 @@ describe('Testing out React.Component Abstract Class', () => {
     it('testing nodes has been rendered', () => {
       expect(messageWrapper).toHaveLength(1)
       expect(greetingWrapper).toHaveLength(1)
-      expect(messageWrapper.contains(<h1>Hello, Anthony</h1>)).toBeTruthy()
+      expect(messageWrapper.contains(<h1>Hello, Anthony</h1>)).toBe(true)
     })
     it('testing the <Message /> has a child component <Greeting />', () => {
       // either is find second is more specific
