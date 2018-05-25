@@ -1,16 +1,17 @@
+/*
+  TODO: Display the differences between React.cloneClone() and <element.type></element.type>
+*/
+
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom/cjs/react-dom.development'
 import context from 'jest-plugin-context'
 import { mount } from 'enzyme' // 348 K
 import '../../enzyme-setup'
 
-import { } from '../../utils/mockStateless'
 import 
 { Message, 
   Greeting, 
   Respondent, 
   ViewedIndicator,
-  ContainerEmpty
 } from '../../utils/mockContainers'
 
 /*
@@ -92,7 +93,8 @@ describe('Testing out the component cloning', () => {
       expect(wrapper.html()).not.toBe("<div><div style=\"width: 10px; height: 10px; border-radius: 50%; background-color: Red;\"></div></div>")
       expect(wrapper.html()).toBe("<div><div style=\"width: 10px; height: 10px; border-radius: 50%; background-color: Green;\"></div></div>")
     })
-    it('testing "ref" of <element.type></element.type> compared to React.cloneElement()', () => {
+    // All skipped tests are incomplete
+    xit('testing "ref" of <element.type></element.type> compared to React.cloneElement()', () => {
       class CloneRespondentUseElementType  extends Component {
         constructor(props) {
           super(props)
@@ -125,9 +127,6 @@ describe('Testing out the component cloning', () => {
       expect(wrapperReactClone.ref('new-ref-used')).not.toBe(undefined)
     })
     xit('testing <element.type>{children}</element.type>', () => {
-      /*
-      TODO: Display the differences between React.cloneClone() and <element.type></element.type>
-      */
       class CloneRespondent  extends Component {
         constructor(props) {
           super(props)
