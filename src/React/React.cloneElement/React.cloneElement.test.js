@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom/cjs/react-dom.development'
 import context from 'jest-plugin-context'
-import { shallow, mount } from 'enzyme' // 348 K
-import 'console.table'
+import { mount } from 'enzyme' // 348 K
 import '../../enzyme-setup'
 
 import { } from '../../utils/mockStateless'

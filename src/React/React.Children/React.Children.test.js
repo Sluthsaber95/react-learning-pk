@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom/cjs/react-dom.development';
 import context from 'jest-plugin-context';
 import { mount } from 'enzyme/'; // 348 K
-import 'console.table'
 import '../../enzyme-setup'
 
 import { Stateless } from '../../utils/mockStateless';
