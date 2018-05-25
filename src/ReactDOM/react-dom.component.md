@@ -1,4 +1,5 @@
 # React Global
+Note: Use enzyme to render the components, for more accurate tests
 
 ## Prequisites
 (none)

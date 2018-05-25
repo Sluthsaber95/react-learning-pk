@@ -18,9 +18,6 @@ import {
   ModalWrap,
 } from './ReadOnly/components';
 
-/*
-TODO: Use enzyme to render the components, for more accurate tests
-*/
 describe('Testing out the ReactDOM Global', () => {
   context('ReactDOM.render()', () => {
     it('renders ReactDOM.render(whitelistedValues, div) on values returned', () => {
