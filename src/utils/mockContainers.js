@@ -1,5 +1,5 @@
 import React, { Component, PureComponent } from 'react';
-export class ContainerEmpty extends Component {
+class ContainerEmpty extends Component {
   constructor(props){
     super(props);
   }
@@ -7,12 +7,12 @@ export class ContainerEmpty extends Component {
     return (<div></div>);
   }
 }
-export class Greeting extends Component {
+class Greeting extends Component {
   render() {
     return <h1>Hello, {this.props.name}</h1>
   }
 }
-export class Message extends Component {
+class Message extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -27,12 +27,12 @@ export class Message extends Component {
     )
   }
 }
-export class PureGreeting extends PureComponent {
+class PureGreeting extends PureComponent {
   render() {
     return <h1>Hello, {this.props.name}</h1>
   }
 }
-export class PureMessage extends PureComponent {
+class PureMessage extends PureComponent {
   constructor(props){
     super(props)
     this.state = {
@@ -47,7 +47,7 @@ export class PureMessage extends PureComponent {
     )
   }
 }
-export class Respondent extends Component {
+class Respondent extends Component {
   constructor(props) {
     super(props)
   }
@@ -64,7 +64,7 @@ export class Respondent extends Component {
   }
 }
 
-export class ViewedIndicator extends Component {
+class ViewedIndicator extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -84,4 +84,13 @@ export class ViewedIndicator extends Component {
     }
     return (<div style={indicatorStyle}></div>)
   }
+}
+export {
+  ContainerEmpty,
+  Greeting,
+  Message,
+  PureGreeting,
+  PureMessage,
+  Respondent,
+  ViewedIndicator
 }
