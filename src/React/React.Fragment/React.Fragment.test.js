@@ -1,11 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import context from 'jest-plugin-context';
-import { shallow, mount, unmount } from 'enzyme'; // 348 K
-import 'console.table'
+import { shallow, mount } from 'enzyme'; // 348 K
 import '../../enzyme-setup'
-
-import {} from '../../utils/mockStateless';
-import {} from '../../utils/mockContainers';
 
 describe('Testing out the React.Fragment', () => {
   context('React.Fragment', () => {
@@ -105,7 +101,8 @@ describe('Testing out the React.Fragment', () => {
       const wrapper = mount(<Definitions items={wordList}/>)
       expect(wrapper.children().props()).toBeTruthy()
     })
-    it('testing </> on values returned; i.e. empty tags', () => {
+    // All pending tests that are are marked `xit` are still incomplete  
+    xit('testing </> on values returned; i.e. empty tags', () => {
       /*
       React 16 and above docs mention that alot of tools do not currently support it; i.e Jest
       */
