@@ -23,7 +23,31 @@ import {
 } from '../../utils/mockContainers'
 
 describe('Testing out React.Component Abstract Class', () => {
-    context('React.Component Minimum Requirements', () => {
+  context('React.Component "this" ', () => {
+    it('test what "this" stands for', () => {
+      class EmptyComponent extends Component {
+        render(){
+          return <div>{this}</div>
+        }
+      }
+      // const wrapper = mount(<EmptyComponent />)
+      // expect(wrapper).toBe()
+      /*
+      this = {
+        {
+          props,
+          context,
+          refs,
+          updater,
+          _reactInternalFiber,
+          _reactInternalInstance,
+          state
+        }
+      }
+      */
+    })
+  })
+  context('React.Component Minimum Requirements', () => {
     const messageWrapper = mount(<Message />)
     const greetingWrapper = mount(<Greeting />)
 
