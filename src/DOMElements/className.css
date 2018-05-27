@@ -1,0 +1,17 @@
+/*
+Note: `:local` provides modularity; i.e. css module
+*/
+
+:local(.indicator-circle) {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: red;
+}
+
+:local(.indicator-circle-on) {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: green;
+}
