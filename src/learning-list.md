@@ -17,14 +17,12 @@ Please Note that these are the topics that are hand picked based on the pareto p
   - Mounting - i.e. before component is mounted
     - constructor()
     - static getDerivedStateFromProps()
-    - componentWillMount() / UNSAFE_componentWillMount()
     - render()
     - componentDidMount()
   - Updating
     - componentWillReceiveProps() / UNSAFE_componentWillReceiveProps()
     - static getDerivedStateFromProps()
     - shouldComponentUpdate()
-    - componentWillUpdate() / UNSAFE_componentWillUpdate()
     - render()
     - getSnapshotBeforeUpdate()
     - componentDidUpdate()
@@ -66,6 +64,14 @@ Testing Tools
 - [TestRender](https://reactjs.org/docs/test-renderer.html)
   - Don't see any additional advantages of using it over Enzyme. to keep the testing simple, I will only included whenever necessary, e.g. testing styled-components
 - JS Env Requirements - are self explanatory
+
+
+## Topics to Avoid
+Why Not?
+- Component Lifecycle
+  These lifecycle methods will be removed as of React 17 meaning that the code I won't have reverse compatibility; due to there unsafe nature, for [more details](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html)
+    - componentWillMount() / UNSAFE_componentWillMount()
+    - componentWillUpdate() / UNSAFE_componentWillUpdate()
 
 Use cases for "Refs"
 - you need to imperatively modify a child outside of the typical dataflow
