@@ -1,4 +1,5 @@
 # LifeCycleMethods
+Note: I think the best to gain experience using these method, is to use them to build app and come across when I should use them.
 These methods or hooks are used to update the UI application state
 
 ## The Component Lifecycle
