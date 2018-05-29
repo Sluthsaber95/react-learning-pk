@@ -13,6 +13,35 @@ Please Note that these are the topics that are hand picked based on the pareto p
 - DOMElements
   - className
   - style - use the `jest-styled-components` module to test with 
+- Component Lifecycle
+  - Mounting - i.e. before component is mounted
+    - constructor()
+    - static getDerivedStateFromProps()
+    - componentWillMount() / UNSAFE_componentWillMount()
+    - render()
+    - componentDidMount()
+  - Updating
+    - componentWillReceiveProps() / UNSAFE_componentWillReceiveProps()
+    - static getDerivedStateFromProps()
+    - shouldComponentUpdate()
+    - componentWillUpdate() / UNSAFE_componentWillUpdate()
+    - render()
+    - getSnapshotBeforeUpdate()
+    - componentDidUpdate()
+  - Upmounting
+    - componentWillUnmount()
+  - Error Handling
+    - componentDidCatch()
+  - Additional Inclusive API - i.e. defaultProps requires an import so it's exclusive
+    - setState()
+    - forceUpdate()
+  - Class Properties
+    - defaultProps
+    - displayName
+  - Instance Properties
+    - props
+    - state
+
 
 ## Topics not prioritised
 Why Not?
