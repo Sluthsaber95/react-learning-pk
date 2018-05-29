@@ -66,6 +66,7 @@ Testing Tools
 - JS Env Requirements - are self explanatory
 
 
+
 ## Topics to Avoid
 Why Not?
 - Component Lifecycle
@@ -205,3 +206,6 @@ A shim is any piece of code that performs interception of an API call and provid
 A polyfill is a type of shim that retrofits legacy browsers with modern HTML5/CSS3 features usually using Javascript or Flash.
 
 Answering your specific question, call it your directory shims if you want to keep the directory generic.
+
+### React Performance tools
+[More details](https://reactjs.org/docs/perf.html)
