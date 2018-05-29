@@ -20,11 +20,23 @@ Why Not?
 No need to use ES5 to create react components anymore, much quicker to develop with ES6 and code looks cleaner.
 
 Why Not?
+React Docs for [Refs and the DOM](https://reactjs.org/docs/refs-and-the-dom.html), advise:
 - React.createRef
 - React.forwardRef
-React Docs for [Refs and the DOM](https://reactjs.org/docs/refs-and-the-dom.html), advise:
 - Using refs for anything that can be done declaratively
 - Will make where the state should be owned, be unclear - usually at a higher level in the hierarchy
+Testing Tools
+- [ShallowRenderer](https://reactjs.org/docs/shallow-renderer.html)
+  - requires you import 'react-test-renderer/shallow'
+  - just enzyme API -  it's much nicer
+  - Shallow testing does not support refs
+- [TestUtilities](https://reactjs.org/docs/test-utils.html)
+  - Additional Util used with TestRenderer and Enzyme, with a simple API, this includes
+    - isDOMComponent
+    - isCompositeComponent
+- [TestRender](https://reactjs.org/docs/test-renderer.html)
+  - Don't see any additional advantages of using it over Enzyme. to keep the testing simple, I will only included whenever necessary, e.g. testing styled-components
+- JS Env Requirements - are self explanatory
 
 Use cases for "Refs"
 - you need to imperatively modify a child outside of the typical dataflow
@@ -146,3 +158,15 @@ export default class MainNav extends React.Component {
 ```
 
 [Interoperable CSS](https://glenmaddern.com/articles/interoperable-css)
+
+Use Sinon to spy on componentDidMount
+
+### Difference between shim and polyfill
+
+See [Shim and Polyfill](https://stackoverflow.com/questions/6599815/what-is-the-difference-between-a-shim-and-a-polyfill) for more details.
+
+A shim is any piece of code that performs interception of an API call and provides a layer of abstraction. It isn't necessarily restricted to a web application or HTML5/CSS3.
+
+A polyfill is a type of shim that retrofits legacy browsers with modern HTML5/CSS3 features usually using Javascript or Flash.
+
+Answering your specific question, call it your directory shims if you want to keep the directory generic.
