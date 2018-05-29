@@ -16,3 +16,30 @@ Which can be seen from the import as `import React, { Components } from 'react'`
 ## When to include
 If you don’t initialize state and you don’t bind methods, you don’t need to implement a constructor for your React component.
 
+### What about initialising state
+Rather than using `constructor(props)` etc. The better syntax for React 16.3
+
+```
+class ExampleComponent extends React.Component {
+  state = {};
+
+  componentWillMount() {
+    this.setState({
+      currentColor: this.props.defaultColor,
+      palette: 'rgb',
+    });
+  }
+}
+A Simpler refactor for this type of component is to move state initialization to the constructor or to a property initializer, like so:
+```
+
+Refactored to:
+```
+// After
+class ExampleComponent extends React.Component {
+  state = {
+    currentColor: this.props.defaultColor,
+    palette: 'rgb',
+  };
+}
+```
