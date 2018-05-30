@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom/cjs/react-dom.development';
 import context from 'jest-plugin-context';
-import { shallow, mount, unmount } from 'enzyme'; // 348 K
+import { mount } from 'enzyme'; // 348 K
 import sinon from 'sinon';
 import '../../enzyme-setup';
 
