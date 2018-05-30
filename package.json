@@ -20,6 +20,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest-plugin-context": "^2.9.0",
     "jest-styled-components": "^5.0.1",
-    "react-test-renderer": "^16.4.0"
+    "react-test-renderer": "^16.4.0",
+    "sinon": "^5.0.10"
   }
 }
