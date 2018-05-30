@@ -40,7 +40,13 @@ Please Note that these are the topics that are hand picked based on the pareto p
     - props
     - state
 
-
+- Using Sinon.js
+  - Spies - A test spy is a function that records arguments, return value, the value of this and exception thrown (if any) for all its calls.
+  - Spy Types
+    - 1) Are anonymous functions
+    - 2) Used tp wrap methods that already exist in the system under test.
+  - Just discovered how mounting affects the results using the spies
+  - Major downside to sinon.js - 667.7k gzipped: 231.6k, which isn't a big of problem - just package download speed may be slow
 ## Topics not prioritised
 Why Not?
 - React.createElement
