@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import context from 'jest-plugin-context';
 import { mount } from 'enzyme'; // 348 K
 import sinon from 'sinon';
-import '../../enzyme-setup';
+import '../../../enzyme-setup';
 
 
 describe('Testing out the shouldComponentUpdate lifecycle method', () => {

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import context from 'jest-plugin-context';
 import { mount } from 'enzyme'; // 348 K
-import '../../enzyme-setup'
+import '../../../enzyme-setup'
 
 
 describe('Testing out the lifecycle method "getDerivedStateFromProps"', () => {
