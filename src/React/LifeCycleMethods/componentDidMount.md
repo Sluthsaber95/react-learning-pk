@@ -1,2 +1,0 @@
-# ComponentDidMount Lifecycle Method
-
