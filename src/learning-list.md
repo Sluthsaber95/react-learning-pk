@@ -47,7 +47,10 @@ Please Note that these are the topics that are hand picked based on the pareto p
     - 2) Used tp wrap methods that already exist in the system under test.
   - Just discovered how mounting affects the results using the spies
   - Major downside to sinon.js - 667.7k gzipped: 231.6k, which isn't a big of problem - just package download speed may be slow
+
+
 ## Topics not prioritised
+### React ^16.3
 Why Not?
 - React.createElement
 No need to use ES5 to create react components anymore, much quicker to develop with ES6 and code looks cleaner.
@@ -71,7 +74,9 @@ Testing Tools
   - Don't see any additional advantages of using it over Enzyme. to keep the testing simple, I will only included whenever necessary, e.g. testing styled-components
 - JS Env Requirements - are self explanatory
 
-
+### JS
+#### ECMAScript 2017 
+Async & Await - for asynchronous JavaScript - significant boost in performance
 
 ## Topics to Avoid
 Why Not?
