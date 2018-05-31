@@ -14,7 +14,6 @@ import React, { Component } from 'react'
 import context from 'jest-plugin-context'
 import { shallow, mount } from 'enzyme' // 348 K
 import '../../enzyme-setup'
-import 'console.table'
 import {
   Greeting,
   Message,
@@ -91,10 +90,7 @@ describe('Testing out React.Component Abstract Class', () => {
     it('testing the <PureMessage /> has a child component <PureGreeting />', () => {
       // either is find second is more specific
       expect(pureMessageWrapper.find('div').children()).toHaveLength(1)
-      // console.table({
-      //   'TEST': 'testing the <PureMessage /> has a child component <PureGreeting />',
-      //   'NOTE': 'PureComponents renderes implements it with a shallow props and state comparison - i.e. only goes one layer deep'
-      // })
+      // 'NOTE': 'PureComponents renderes implements it with a shallow props and state comparison - i.e. only goes one layer deep'
       expect(pureMessageWrapper.find(PureGreeting)).not.toHaveLength(1)
       expect(pureMessageWrapper.find(PureGreeting)).toHaveLength(0)
     })
