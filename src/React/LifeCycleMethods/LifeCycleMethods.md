@@ -15,7 +15,24 @@ Methods prefixed:
 
 Dan Abramov React [lifecycle Method Diagram](https://twitter.com/dan_abramov/status/981712092611989509) has a more detail graphical overview for all 
 
-Mounting
+### Mounting
+- constructor()
+- static getDerivedStateFromProps()
+- componentWillMount() / UNSAFE_componentWillMount()
+- render()
+- componentDidMount()
+
+### Updating
+- componentWillReceiveProps() / UNSAFE_componentWillReceiveProps()
+- static getDerivedStateFromProps()
+- shouldComponentUpdate()
+- componentWillUpdate() / UNSAFE_componentWillUpdate()
+- render()
+- getSnapshotBeforeUpdate()
+- componentDidUpdate()
+
+## Unmounting
+- ComponentWillUnmount
 
 ## Instance Properties and Class Properties
 ### Difference between class and instance
