@@ -5,7 +5,7 @@
 
 import React, { Component } from 'react';
 import context from 'jest-plugin-context';
-import {shallow, mount } from 'enzyme'; // 348 K
+import { mount } from 'enzyme'; // 348 K
 import sinon from 'sinon';
 import '../../../enzyme-setup'
 
