@@ -100,3 +100,7 @@ A shim is any piece of code that performs interception of an API call and provid
 A polyfill is a type of shim that retrofits legacy browsers with modern HTML5/CSS3 features usually using Javascript or Flash.
 
 Answering your specific question, call it your directory shims if you want to keep the directory generic.
+
+### Vocab
+#### stale data
+In computer processing, if a processor changes the value of an operand and then, at a subsequent time, fetches the operand and obtains the old rather than the new value of the operand, then it is said to have seen stale data.
