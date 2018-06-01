@@ -44,7 +44,7 @@ describe('sum', () => {
 });
 ```
 
-### Inline Requires
+#### Inline Requires
 Note: Requires - the current solution is to eject the create-react-app project
 
 One special thing we do in Jest is reset the entire module registry after every single test (call to it) to make sure tests don't depend on each other.
@@ -60,7 +60,7 @@ describe('sum', () => {
   });
 });
 
-### Disable JSDom
+#### Disable JSDom
 Original source: https://medium.com/@kevinsimper/how-to-disable-jsdom-in-jest-make-jest-run-twice-as-fast-a01193f23405
 
 Note: this requires that you eject your create-react-app project
@@ -75,13 +75,13 @@ Note: this requires that you eject your create-react-app project
 ```
 Oh and by the way, React needs `JSDom` to render HTML elements, so removing it is not an object
 
-#### What is JSDom?
+##### What is JSDom?
 `jsdom` is a whole browser DOM emulated in javascript, you can imagine that is not a small code footprint. For more details see [jsdom](https://www.npmjs.com/package/jsdom)
 Now however will document be undefined, so any test that depend on the DOM will be null or have a reference error.
 
 
 
-### Optimising Jest in CI
+#### Optimising Jest in CI
 - [Travis CI](https://www.npmjs.com/package/performance-react#travis-ci)
 - CI Server - using the `jest --runInBand` speeds up jest test duration by 50% on CI servers [StackOverFlow Jest --runInBand]
 (https://stackoverflow.com/questions/43864793/why-does-jest-runinband-speed-up-tests)
@@ -90,23 +90,23 @@ Now however will document be undefined, so any test that depend on the DOM will 
 - CodeMod - used to altercode on massive scale, like supercharging regex replace scripts
 
 
-### React Performance tools
+#### React Performance tools
 [More details](https://reactjs.org/docs/perf.html)
 
-### Testing Best Practices: Tip #1
+#### Testing Best Practices: Tip #1
 Start with the simplest part of the function, such as a function/method.
 Split larger function into smaller functions - Source:  [Testing Made Easy, Better Stronger Unit and Integration](https://pusher.com/sessions/meetup/js-monthly-london/testing-made-easy-better-faster-stronger-unit-tests-and-integration-tests)
 
-### Future Learning Improvement: Faking Functions/Methods
+#### Future Learning Improvement: Faking Functions/Methods
 __Current course of action__ - just to empirically test a method or class, from the most often used test cases and/or test cases that will aid me to help me understand the method or class better.
 
 __Suggested New Course__ - What I was trying to do was to mock a function from scratch and see exactly what it consume and return - which was I have to admit a better way, to test a new library.
 So the decision is to stay with this new course of action, but not update any of the other current tests that have been produced, I can back to them to update them some time in the future if necessary.
 
-### CSS Modules
+#### CSS Modules
 - for each class include at the start. :local(className)
 
-#### Modularising CSS code with react
+##### Modularising CSS code with react
 ```
 import url from './logo.png';
 import styles from './main-nav.css';
@@ -120,3 +120,23 @@ export default class MainNav extends React.Component {
 }
 ```
 [Interoperable CSS](https://glenmaddern.com/articles/interoperable-css). Use Sinon to spy on componentDidMount
+
+### Test flow
+#### Given Every Test IDs
+__Reasons for Test IDs__
+- General reasons
+  - Every Test is searchable
+- Learning Purposes
+  - Specific tests can be compared on their outcomes, on it's is true, that both tests return the same value
+
+
+
+Include UUIDs generated for each tests, to make them easily identifiable
+
+There should be UUID 
+- describe = UUID-description
+- context = UUID-description + UUID-context
+- it = UUID-description + UUID-context + UUID-it
+
+The all tests will be given UUID, that will be randomly generated; to be truly unique the test ids must be checked, whether a previous UUID is unique. Even if the probability of two IDs are extremely low - essentially test ID generation, must be deterministic.
+
