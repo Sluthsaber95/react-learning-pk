@@ -1,7 +1,18 @@
-# ComponentDidMount Lifecycle Method
-
-# void componentDidMount
+# void componentDidMount Method
+## Introduction
 Whenever this method is called, React has already rendered our component and put it into the DOM. Therefore, if there is any initialization you want to perform that relies on the DOM, do it here and now.
+Any void function, does return anything, is useful for give side effects to component, by changing the value of state, or property of the class
+
+```
+// state
+state = {}
+
+// property
+constructor(props){
+  super(props);
+  this.ref = React.createRef()
+}
+```
 
 ## When to use componentDidMount
 Main Use
