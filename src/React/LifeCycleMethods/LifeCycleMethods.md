@@ -4,7 +4,6 @@ Thus this document is INCOMPLETE and requires more use cases, to understand the 
 These methods or hooks are used to update the UI application state
 
 ## The Component Lifecycle
-
 [Copy Pasted from Docs [React.Component](https://reactjs.org/docs/react-component.html)]
 
 Each component has several “lifecycle methods” that you can override to run code at particular times in the process.
@@ -31,7 +30,7 @@ Dan Abramov React [lifecycle Method Diagram](https://twitter.com/dan_abramov/sta
 - getSnapshotBeforeUpdate()
 - componentDidUpdate()
 
-## Unmounting
+### Unmounting
 - ComponentWillUnmount
 
 ## Instance Properties and Class Properties
@@ -54,9 +53,14 @@ Hence:
   - state
 
 
-## Order of Methods/Hooks
+### Order of Methods/Hooks
 1. constructor - If you “fork” props by using them for state, you might also want to implement getDerivedStateFromProps() to keep the state up-to-date with them. As in `this.state = { propUsed: props.propUsed }`. But lifting state up is often easier and less bug-prone.
 
 2. getDerivedStateFromProps - is invoked right before calling the render method, both on the initial mount and on subsequent updates. It should return an object to update the state, or null to update nothing.
 
 Note that this method is fired on every render, regardless of the cause. This is in contrast to UNSAFE_componentWillReceiveProps, which only fires when the parent causes a re-render and not as a result of a local setState.
+
+## Miscellaneous
+### Async Rendering
+Beyond React 16
+(https://reactjs.org/blog/2018/03/01/sneak-peek-beyond-react-16.html)
