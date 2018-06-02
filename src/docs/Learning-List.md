@@ -28,17 +28,6 @@ Please Note that these are the topics that are hand picked based on the pareto p
     - componentDidUpdate()
   - Upmounting
     - componentWillUnmount()
-  - Error Handling
-    - componentDidCatch()
-  - Additional Inclusive API - i.e. defaultProps requires an import so it's exclusive
-    - setState()
-    - forceUpdate()
-  - Class Properties
-    - defaultProps
-    - displayName
-  - Instance Properties
-    - props
-    - state
 
 - Using Sinon.js
   - Spies - A test spy is a function that records arguments, return value, the value of this and exception thrown (if any) for all its calls.
@@ -73,6 +62,21 @@ Testing Tools
 - [TestRender](https://reactjs.org/docs/test-renderer.html)
   - Don't see any additional advantages of using it over Enzyme. to keep the testing simple, I will only included whenever necessary, e.g. testing styled-components
 - JS Env Requirements - are self explanatory
+
+Why Not?
+- Error Handling - isn't often used, I will start to write tests, when error handling is required
+  - componentDidCatch()
+
+Why Not?
+- Additional Inclusive API - the testing of props and state can be seen in other tests, that I feel tht isn't really a need
+  - setState()
+  - forceUpdate() - react recommends I do not use this, as it forces the component to re-render. When not used correctly, it deoptimises the application
+- Class Properties - both these are self explanatory and are derived from props
+  - defaultProps - requires an import so it's exclusive
+  - displayName
+- Instance Properties - self explanatory
+  - props
+  - state
 
 ### JS
 #### ECMAScript 2017 
