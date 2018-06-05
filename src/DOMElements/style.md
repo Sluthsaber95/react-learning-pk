@@ -30,6 +30,7 @@ export default class App extends Component {
 
 Please see the [identity-obj-proxy](https://github.com/keyanzhang/identity-obj-proxy)
 
+Please note that you need to eject CRA before using css modules
 ## Inline styling
 This is advises against when xit comes to performance, in terms of 
   - CSS being cacheable - blazing fast
